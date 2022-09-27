@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.get('/noticias', (req, res) => {
+app.get('/ler/:id', (req, res) => {
     res.render('noticias');
 });
 
@@ -24,7 +24,7 @@ app.post('/add', (req, res) => {
     res.send('to do');
 });
 
-app.get('/edit', (req, res) => {
+app.get('/edit/:id', (req, res) => {
     res.render('editNews');
 });
 
