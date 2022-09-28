@@ -5,9 +5,12 @@
 <h1>Nova notícia</h1>
 
 <form method="post" action="/add">
-    <label for="titulo">Título:</label>
-    <input type="text" id="titulo" name="titulo" placeholder="Título" required>
-    <textarea id="summernote" name="texto" required></textarea>
+    <label for="title">Título:</label>
+    <input type="text" id="title" name="title" placeholder="Título" required>
+    <br />
+    <label for="description">Descrição:</label>
+    <input type="text" id="description" name="description" placeholder="Descrição" required>
+    <textarea id="summernote" name="text" required></textarea>
     <input type="submit" value="Criar postagem">
 </form>
 
@@ -15,7 +18,7 @@
       $('#summernote').summernote({
         placeholder: 'Hello stand alone ui',
         tabsize: 2,
-        height: 120,
+        height: 360,
         toolbar: [
           ['style', ['style']],
           ['font', ['bold', 'underline', 'clear']],

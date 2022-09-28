@@ -1,1 +1,9 @@
 <h1>Página inicial</h1>
+
+{{#each posts}}
+<hr>
+<h2>{{this.dataValues.title}}</h2>
+<small>{{this.dataValues.updatedAt}}</small>
+<h5>{{this.dataValues.description}}</h5>
+{{this.dataValues.text}}
+{{/each}}

@@ -4,11 +4,14 @@
 
 <h1>Editar notícia</h1>
 
-<form method="post" action="/add">
-    <label for="titulo">Título:</label>
-    <input type="text" id="titulo" name="titulo" placeholder="Título" required>
-    <textarea id="summernote" name="texto" required></textarea>
-    <input type="submit" value="Criar postagem">
+<form method="post" action="/edit/{{id}}">
+    <label for="title">Título:</label>
+    <input type="text" id="title" name="title" placeholder="Título" value="{{post.title}}" required>
+    <br />
+    <label for="description">Descrição:</label>
+    <input type="text" id="description" name="description" placeholder="Descrição" value="{{this.dataValues.description}}"  required>
+    <textarea id="summernote" name="text" required>{{this.dataValues.text}}</textarea>
+    <input type="submit" value="Editar postagem">
 </form>
 
 
@@ -16,7 +19,7 @@
       $('#summernote').summernote({
         placeholder: 'Hello stand alone ui',
         tabsize: 2,
-        height: 120,
+        height: 360,
         toolbar: [
           ['style', ['style']],
           ['font', ['bold', 'underline', 'clear']],

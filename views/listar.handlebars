@@ -1,0 +1,14 @@
+<h1>Lista de notícias</h1>
+<a href="/add">Nova notícia</a>
+
+{{#each posts}}
+<hr>
+<h2>{{this.dataValues.title}}</h2>
+<small>{{this.dataValues.updatedAt}}</small>
+<h5>{{this.dataValues.description}}</h5>
+{{this.dataValues.text}}
+<a href="/edit/{{this.dataValues.id}}">Editar</a>
+<form method="post" action="/del/{{this.dataValues.id}}">
+	<input type="submit" value="Deletar">
+</form>
+{{/each}}

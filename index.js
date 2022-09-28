@@ -7,35 +7,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-    res.render('home');
-});
+const routes = require('./routes');
+app.use(routes);
 
-app.get('/ler/:id', (req, res) => {
-    res.render('noticias');
-});
-
-app.get('/add', (req, res) => {
-    res.render('addNews');
-})
-
-app.post('/add', (req, res) => {
-    res.send('to do');
-});
-
-app.get('/edit/:id', (req, res) => {
-    res.render('editNews');
-});
-
-app.post('/edit/:id', (req, res) => {
-    res.send('to do');
-});
-
-app.post('/del/:id', (req, res) => {
-    res.send('to do');
-});
-
-app.listen(8080, () => {
-    console.log('Servidor rodando.');
+const sequelize = require('./config/connection');
+sequelize.sync().then((result) => {
+    app.listen(8080);
+}).catch((err) => {
+    console.log(err);
 });
