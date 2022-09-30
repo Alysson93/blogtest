@@ -7,6 +7,7 @@
 <small>{{this.dataValues.updatedAt}}</small>
 <h5>{{this.dataValues.description}}</h5>
 {{this.dataValues.text}}
+<a href="/ler/{{this.dataValues.id}}">Ler mais...</a>
 <a href="/edit/{{this.dataValues.id}}">Editar</a>
 <form method="post" action="/del/{{this.dataValues.id}}">
 	<input type="submit" value="Deletar">

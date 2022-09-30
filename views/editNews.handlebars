@@ -4,13 +4,13 @@
 
 <h1>Editar notícia</h1>
 
-<form method="post" action="/edit/{{id}}">
+<form method="post" action="/edit/{{post.dataValues.id}}">
     <label for="title">Título:</label>
-    <input type="text" id="title" name="title" placeholder="Título" value="{{post.title}}" required>
+    <input type="text" id="title" name="title" placeholder="Título" value="{{post.dataValues.title}}" required>
     <br />
     <label for="description">Descrição:</label>
-    <input type="text" id="description" name="description" placeholder="Descrição" value="{{this.dataValues.description}}"  required>
-    <textarea id="summernote" name="text" required>{{this.dataValues.text}}</textarea>
+    <input type="text" id="description" name="description" placeholder="Descrição" value="{{post.dataValues.description}}"  required>
+    <textarea id="summernote" name="text" required>{{post.dataValues.text}}</textarea>
     <input type="submit" value="Editar postagem">
 </form>
 

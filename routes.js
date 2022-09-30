@@ -8,8 +8,13 @@ route.get('/', (req, res) => {
     });
 });
 
-route.get('/ler/:id', (req, res) => {
-    res.render('noticias');
+route.get('/ler/:id', async (req, res) => {
+    const post = await Post.findByPk(req.params.id);
+    if (post === null) {
+        res.redirect('404');
+    } else {
+        res.render('noticias', { post: post });
+    }
 });
 
 route.get('/lista', (req, res) => {
@@ -34,12 +39,13 @@ route.post('/add', (req, res) => {
     })
 });
 
-route.get('/edit/:id', (req, res) => {
-    res.render('editNews', {
-        post: Post.findAll({
-            where: { id: req.params.id }
-        })
-    });
+route.get('/edit/:id', async (req, res) => {
+    const post = await Post.findByPk(req.params.id);
+    if (post === null) {
+        res.redirect('404');
+    } else {
+        res.render('editNews', {post: post});
+    }
 });
 
 route.post('/edit/:id', (req, res) => {
@@ -62,6 +68,10 @@ route.post('/del/:id', (req, res) => {
     }).catch((err) => {
         res.send(err);
     });
+});
+
+route.get('*', (req, res) => {
+    res.render('404');
 });
 
 module.exports = route;
