@@ -1,1 +1,13 @@
 <h1>{{post.dataValues.title}}</h1>
+
+<div id="element">
+    
+</div>
+
+<hr>
+<!-- html test  --->
+
+<script>
+    var element = document.getElementById('element');
+    element.innerHTML = `{{{post.dataValues.text}}}`
+</script>

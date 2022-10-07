@@ -4,7 +4,11 @@ const Post = require('./models/Post');
 
 route.get('/', (req, res) => {
     Post.findAll({order: [['id', 'DESC']]}).then((posts) => {
-        res.render('home', {posts: posts});
+        if (posts.length == 0) {
+            res.render('teste');
+        } else {
+            res.render('home', {posts: posts});
+        }
     });
 });
 
