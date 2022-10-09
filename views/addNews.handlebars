@@ -4,12 +4,15 @@
 
 <h1>Nova notícia</h1>
 
-<form method="post" action="/add">
+<form method="post" enctype="multipart/form-data" action="/add">
     <label for="title">Título:</label>
     <input type="text" id="title" name="title" placeholder="Título" required>
     <br />
     <label for="description">Descrição:</label>
     <input type="text" id="description" name="description" placeholder="Descrição" required>
+    <br />
+    <label for="image">Adicionar foto</label>
+    <input type="file" name="image" id="image">
     <textarea id="summernote" name="text" required></textarea>
     <input type="submit" value="Criar postagem">
 </form>

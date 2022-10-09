@@ -1,13 +1,14 @@
 const route = require('express').Router();
+const Op = require('sequelize').Op;
 
 const Post = require('./models/Post');
 
 route.get('/', (req, res) => {
     Post.findAll({order: [['id', 'DESC']]}).then((posts) => {
         if (posts.length == 0) {
-            res.render('teste');
+            res.render('emptyBlog');
         } else {
-            res.render('home', {posts: posts});
+            res.render('blog', {posts: posts});
         }
     });
 });
@@ -35,7 +36,8 @@ route.post('/add', (req, res) => {
     Post.create({
         title: req.body.title,
         description: req.body.description,
-        text: req.body.text
+        text: req.body.text,
+        imgUrl: '/img/' + req.file.filename
     }).then(() => {
         res.redirect('/lista');
     }).catch((err) => {
@@ -56,7 +58,8 @@ route.post('/edit/:id', (req, res) => {
     Post.update({
         title: req.body.title,
         description: req.body.description,
-        text: req.body.text
+        text: req.body.text,
+        imgUrl: '/img/' + req.file.filename
     }, {
         where: {id: req.params.id}
     }).then(() => {
@@ -72,6 +75,26 @@ route.post('/del/:id', (req, res) => {
     }).catch((err) => {
         res.send(err);
     });
+});
+
+route.get('/search', async (req, res) => {
+    const query = req.query.search;
+    const posts = await Post.findAll({
+        where: {
+            title: { [Op.like]: `%${query}%` }
+        }
+    });
+    res.render('blog', {posts: posts});
+});
+
+route.get('/listaSearch', async (req, res) => {
+    const query = req.query.search;
+    const posts = await Post.findAll({
+        where: {
+            title: { [Op.like]: `%${query}%` }
+        }
+    });
+    res.render('listar', {posts: posts});
 });
 
 route.get('*', (req, res) => {

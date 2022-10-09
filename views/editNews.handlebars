@@ -4,12 +4,15 @@
 
 <h1>Editar notícia</h1>
 
-<form method="post" action="/edit/{{post.dataValues.id}}">
+<form method="post"  enctype="multipart/form-data" action="/edit/{{post.dataValues.id}}">
     <label for="title">Título:</label>
     <input type="text" id="title" name="title" placeholder="Título" value="{{post.dataValues.title}}" required>
     <br />
     <label for="description">Descrição:</label>
     <input type="text" id="description" name="description" placeholder="Descrição" value="{{post.dataValues.description}}"  required>
+    <br />
+    <label for="image">Adicionar foto</label>
+    <input type="file" name="image" id="image" value="{{post.dataValues.imgUrl}}">
     <textarea id="summernote" name="text" required>{{post.dataValues.text}}</textarea>
     <input type="submit" value="Editar postagem">
 </form>
